@@ -7,9 +7,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container">
         <a class="navbar-brand" href="{{ url('/') }}">ShopEase</a>
-        <div class="collapse navbar-collapse">
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-toggle="collapse" 
+            data-target="#navbarNav" 
+            aria-controls="navbarNav" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/products') }}">Products</a>
@@ -23,7 +33,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container mt-4">
         @yield('content')
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

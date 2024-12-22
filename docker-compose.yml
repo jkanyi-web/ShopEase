@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shopease_app
+    container_name: shopease_app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    networks:
+      - shopease
+
+  webserver:
+    image: nginx:alpine
+    container_name: shopease_webserver
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - ./nginx:/etc/nginx/conf.d/
+    networks:
+      - shopease
+
+  db:
+    image: mysql:5.7
+    container_name: shopease_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: shopease
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: shopease
+      MYSQL_PASSWORD: shopease
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - shopease
+
+  redis:
+    image: redis:alpine
+    container_name: shopease_redis
+    restart: unless-stopped
+    networks:
+      - shopease
+
+networks:
+  shopease:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
