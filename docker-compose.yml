@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
-  app:
+  php:
     build:
       context: .
       dockerfile: Dockerfile
-    image: shopease_app
-    container_name: shopease_app
+    image: shopease_php
+    container_name: shopease_php
     restart: unless-stopped
     working_dir: /var/www
     volumes:
@@ -22,19 +20,21 @@ services:
       - "8000:80"
     volumes:
       - .:/var/www
-      - ./nginx:/etc/nginx/conf.d/
+      - ./default.conf:/etc/nginx/conf.d/default.conf
     networks:
       - shopease
+
+
 
   db:
     image: mysql:5.7
     container_name: shopease_db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: shopease
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: shopease
-      MYSQL_PASSWORD: shopease
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - dbdata:/var/lib/mysql
     networks:

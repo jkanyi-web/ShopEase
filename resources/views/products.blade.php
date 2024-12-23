@@ -3,7 +3,7 @@
 @section('title', 'Products')
 
 @section('content')
-    <h1 class="my-4">Products</h1>
+    <!-- <h1 class="my-4">Products</h1> -->
     <form id="create-product-form" class="mb-4">
         <div class="form-group">
             <input type="text" id="product-name" class="form-control" placeholder="Product Name" required>
