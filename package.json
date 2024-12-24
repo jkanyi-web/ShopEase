@@ -2,6 +2,7 @@
   "name": "ShopEase",
   "private": true,
   "scripts": {
+    "start": "npm run prod",
     "dev": "npm run development",
     "development": "mix",
     "prod": "npm run production",
