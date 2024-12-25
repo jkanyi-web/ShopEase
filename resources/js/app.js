@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const productPriceInput = document.getElementById('product-price');
     const productDescriptionInput = document.getElementById('product-description');
 
-    const baseUrl = 'http://165.22.215.178:8000/api';
+    const baseUrl = 'http://165.22.215.178/api';
 
     // Fetch and display products
     const fetchProducts = () => {
