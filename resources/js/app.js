@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch and display products
     const fetchProducts = () => {
-        fetch('http://127.0.0.1:8000/api/products')
+        fetch('http://165.22.215.178:8000/api/products')
             .then(response => response.json())
             .then(products => {
                 console.log('Products:', products); // Debugging
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch and display cart
     const fetchCart = () => {
-        fetch('http://127.0.0.1:8000/api/cart')
+        fetch('http://165.22.215.178:8000/api/cart')
             .then(response => response.json())
             .then(cart => {
                 console.log('Cart:', cart); // Debugging
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch and display orders
     const fetchOrders = () => {
-        fetch('http://127.0.0.1:8000/api/orders')
+        fetch('http://165.22.215.178:8000/api/orders')
             .then(response => response.json())
             .then(orders => {
                 console.log('Orders:', orders); // Debugging
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add to cart
     window.addToCart = (productId) => {
         console.log('Adding to cart:', productId); // Debugging
-        fetch('http://127.0.0.1:8000/api/cart/add', {
+        fetch('http://165.22.215.178:8000/api/cart/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Remove from cart
     window.removeFromCart = (productId) => {
         console.log('Removing from cart:', productId); // Debugging
-        fetch('http://127.0.0.1:8000/api/cart/remove', {
+        fetch('http://165.22.215.178:8000/api/cart/remove', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (placeOrderButton) {
         placeOrderButton.addEventListener('click', () => {
             console.log('Placing order'); // Debugging
-            fetch('http://127.0.0.1:8000/api/orders', {
+            fetch('http://165.22.215.178:8000/api/orders', {
                 method: 'POST',
             }).then(fetchOrders);
         });
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const price = productPriceInput.value;
             const description = productDescriptionInput.value;
             console.log('Creating product:', { name, price, description }); // Debugging
-            fetch('http://127.0.0.1:8000/api/products', {
+            fetch('http://165.22.215.178:8000/api/products', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
