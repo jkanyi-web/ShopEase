@@ -7,7 +7,7 @@ import axios from 'axios';
 window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed');
 
     const productsDiv = document.getElementById('products');
@@ -19,9 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const productPriceInput = document.getElementById('product-price');
     const productDescriptionInput = document.getElementById('product-description');
 
+    const baseUrl = 'http://165.22.215.178/api';
+
     // Fetch and display products
     const fetchProducts = () => {
-        fetch('http://127.0.0.1:8000/api/products')
+        fetch(`${baseUrl}/products`)
             .then(response => response.json())
             .then(products => {
                 console.log('Products:', products); // Debugging
@@ -46,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch and display cart
     const fetchCart = () => {
-        fetch('http://127.0.0.1:8000/api/cart')
+        fetch(`${baseUrl}/cart`)
             .then(response => response.json())
             .then(cart => {
                 console.log('Cart:', cart); // Debugging
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch and display orders
     const fetchOrders = () => {
-        fetch('http://127.0.0.1:8000/api/orders')
+        fetch(`${baseUrl}/orders`)
             .then(response => response.json())
             .then(orders => {
                 console.log('Orders:', orders); // Debugging
@@ -95,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add to cart
     window.addToCart = (productId) => {
         console.log('Adding to cart:', productId); // Debugging
-        fetch('http://127.0.0.1:8000/api/cart/add', {
+        fetch(`${baseUrl}/cart/add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Remove from cart
     window.removeFromCart = (productId) => {
         console.log('Removing from cart:', productId); // Debugging
-        fetch('http://127.0.0.1:8000/api/cart/remove', {
+        fetch(`${baseUrl}/cart/remove`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -120,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (placeOrderButton) {
         placeOrderButton.addEventListener('click', () => {
             console.log('Placing order'); // Debugging
-            fetch('http://127.0.0.1:8000/api/orders', {
+            fetch(`${baseUrl}/orders`, {
                 method: 'POST',
             }).then(fetchOrders);
         });
@@ -134,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const price = productPriceInput.value;
             const description = productDescriptionInput.value;
             console.log('Creating product:', { name, price, description }); // Debugging
-            fetch('http://127.0.0.1:8000/api/products', {
+            fetch(`${baseUrl}/products`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
